@@ -1,0 +1,22 @@
+PODS:
+  - UICollectionViewExt (0.1.0):
+    - UICollectionViewExt/PagingEnabled (= 0.1.0)
+    - UICollectionViewExt/UICollectionViewLeftAlignLayout (= 0.1.0)
+    - UICollectionViewExt/UICollectionViewWaterfallLayout (= 0.1.0)
+  - UICollectionViewExt/PagingEnabled (0.1.0)
+  - UICollectionViewExt/UICollectionViewLeftAlignLayout (0.1.0)
+  - UICollectionViewExt/UICollectionViewWaterfallLayout (0.1.0)
+
+DEPENDENCIES:
+  - UICollectionViewExt (from `../`)
+
+EXTERNAL SOURCES:
+  UICollectionViewExt:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  UICollectionViewExt: 3d5b1b3b9055179a45c8830df4a9350293c7958f
+
+PODFILE CHECKSUM: fed8912bfc38d878f2e3708239968ce946d8861a
+
+COCOAPODS: 1.5.3

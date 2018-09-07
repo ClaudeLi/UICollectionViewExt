@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'UICollectionViewExt_Example' do
+  pod 'UICollectionViewExt', :path => '../'
+
+  target 'UICollectionViewExt_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
