@@ -74,9 +74,9 @@
         self.pagingScrollView.hidden = YES;
         [self addSubview:self.pagingScrollView];
         
-        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
-        // 打开下句+hitTest 可以注销上句↑
-//        [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];
+//        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
+        // 上句 = 下句+tapPagingScrollView+hitTest
+        [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];
         
         [self resetPagingScrollViewContentSize:2];
     }
@@ -104,23 +104,23 @@
     }
 }
 
-//- (void)tapPagingScrollView:(UITapGestureRecognizer *)tapGR {
-//    CGPoint point = [tapGR locationInView:self];
-//    NSIndexPath *indexPath = [self indexPathForItemAtPoint:point];
-//    if (indexPath) {
-//        if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
-//            [self collectionView:self didSelectItemAtIndexPath:indexPath];
-//        }
-//    }
-//}
-//
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-//    if (self.pagingScrollView) {
-//        if ([self.layer containsPoint:point]) {
-//            return self.pagingScrollView;
-//        }
-//    }
-//    return [super hitTest:point withEvent:event];
-//}
+- (void)tapPagingScrollView:(UITapGestureRecognizer *)tapGR {
+    CGPoint point = [tapGR locationInView:self];
+    NSIndexPath *indexPath = [self indexPathForItemAtPoint:point];
+    if (indexPath) {
+        if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
+            [self collectionView:self didSelectItemAtIndexPath:indexPath];
+        }
+    }
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    if (self.pagingScrollView) {
+        if ([self.layer containsPoint:point]) {
+            return self.pagingScrollView;
+        }
+    }
+    return [super hitTest:point withEvent:event];
+}
 
 @end
