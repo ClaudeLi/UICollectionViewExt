@@ -446,7 +446,8 @@ static CGFloat UIFloorCGFloat(CGFloat value) {
             contentSize.height = self.minimumContentHeight;
         }
     }else{
-        contentSize.width = [[[self.columnHeights lastObject] firstObject] floatValue] - self.sectionInset.right;
+        NSArray *array = [[self.columnHeights lastObject] sortedArrayUsingSelector:@selector(compare:)];
+        contentSize.width = [[array lastObject] floatValue];
         if (contentSize.width < self.minimumContentHeight) {
             contentSize.width = self.minimumContentHeight;
         }
