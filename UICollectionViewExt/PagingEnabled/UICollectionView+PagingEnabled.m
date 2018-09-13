@@ -57,6 +57,13 @@
     return objc_getAssociatedObject(self, @selector(pagingScrollView));
 }
 
+- (void)resetPaging{
+    self.contentOffset = CGPointZero;
+    if (self.pagingScrollView) {
+        self.pagingScrollView.contentOffset = CGPointZero;
+    }
+}
+
 - (void)removePagingScrollView{
     if (self.pagingScrollView) {
         [self removeGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
@@ -74,7 +81,6 @@
         self.pagingScrollView.hidden = YES;
         [self addSubview:self.pagingScrollView];
         
-        // 在复杂的流上会有手势冲突
 //        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
         // 上句 = 下句+tapPagingScrollView+hitTest
         [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];

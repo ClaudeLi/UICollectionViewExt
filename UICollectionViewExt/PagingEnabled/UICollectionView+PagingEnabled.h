@@ -21,4 +21,9 @@
  */
 @property (nonatomic, assign) NSInteger pagingCount;
 
+/**
+ 重置paging, CGPointZero
+ */
+- (void)resetPaging;
+
 @end

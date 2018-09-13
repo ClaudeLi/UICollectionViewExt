@@ -405,7 +405,6 @@ static CGFloat UIFloorCGFloat(CGFloat value) {
                         [itemAttributes addObject:attributes];
                         [self.allItemAttributes addObject:attributes];
                         self.columnHeights[section][rowIndex] = @(CGRectGetMaxX(attributes.frame) + minimumInteritemSpacing);
-                        
                         if (section == numberOfSections-1 && idx == itemCount-1) {
                             top += CGRectGetMaxX(attributes.frame);
                         }
@@ -447,7 +446,13 @@ static CGFloat UIFloorCGFloat(CGFloat value) {
         }
     }else{
         NSArray *array = [[self.columnHeights lastObject] sortedArrayUsingSelector:@selector(compare:)];
-        contentSize.width = [[array lastObject] floatValue];
+        CGFloat minimumInteritemSpacing;
+        if ([self.delegate respondsToSelector:@selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]) {
+            minimumInteritemSpacing = [self.delegate collectionView:self.collectionView layout:self minimumInteritemSpacingForSectionAtIndex:array.count-1];
+        } else {
+            minimumInteritemSpacing = self.minimumInteritemSpacing;
+        }
+        contentSize.width = [[array lastObject] floatValue]-minimumInteritemSpacing;
         if (contentSize.width < self.minimumContentHeight) {
             contentSize.width = self.minimumContentHeight;
         }
