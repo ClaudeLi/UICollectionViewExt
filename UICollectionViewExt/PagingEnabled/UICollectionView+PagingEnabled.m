@@ -81,6 +81,7 @@
         self.pagingScrollView.hidden = YES;
         [self addSubview:self.pagingScrollView];
         
+        // 在复杂的流上会有手势冲突
 //        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
         // 上句 = 下句+tapPagingScrollView+hitTest
         [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];
