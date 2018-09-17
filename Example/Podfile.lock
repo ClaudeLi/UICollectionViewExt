@@ -1,11 +1,11 @@
 PODS:
-  - UICollectionViewExt (0.1.2):
-    - UICollectionViewExt/PagingEnabled (= 0.1.2)
-    - UICollectionViewExt/UICollectionViewLeftAlignLayout (= 0.1.2)
-    - UICollectionViewExt/UICollectionViewWaterfallLayout (= 0.1.2)
-  - UICollectionViewExt/PagingEnabled (0.1.2)
-  - UICollectionViewExt/UICollectionViewLeftAlignLayout (0.1.2)
-  - UICollectionViewExt/UICollectionViewWaterfallLayout (0.1.2)
+  - UICollectionViewExt (1.0.1):
+    - UICollectionViewExt/PagingEnabled (= 1.0.1)
+    - UICollectionViewExt/UICollectionViewLeftAlignLayout (= 1.0.1)
+    - UICollectionViewExt/UICollectionViewWaterfallLayout (= 1.0.1)
+  - UICollectionViewExt/PagingEnabled (1.0.1)
+  - UICollectionViewExt/UICollectionViewLeftAlignLayout (1.0.1)
+  - UICollectionViewExt/UICollectionViewWaterfallLayout (1.0.1)
 
 DEPENDENCIES:
   - UICollectionViewExt (from `../`)
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  UICollectionViewExt: adfe9bf2b3d953af1cf5ad9537cdef5e64b3dce2
+  UICollectionViewExt: b4dde7bc59c4fe4cc27b4cef45c2ec175c796667
 
 PODFILE CHECKSUM: fed8912bfc38d878f2e3708239968ce946d8861a
 

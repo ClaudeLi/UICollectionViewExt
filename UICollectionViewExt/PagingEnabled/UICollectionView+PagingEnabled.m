@@ -77,15 +77,11 @@
         self.pagingScrollView = [UIScrollView new];
         self.pagingScrollView.pagingEnabled = YES;
         self.pagingScrollView.delegate = self;
-        self.pagingScrollView.backgroundColor = [UIColor redColor];
         self.pagingScrollView.hidden = YES;
-        [self addSubview:self.pagingScrollView];
-        
-        // 在复杂的流上会有手势冲突
-//        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
-        // 上句 = 下句+tapPagingScrollView+hitTest
-        [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];
-        
+        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
+        // 上句 = 下句+tapPagingScrollView+hitTest, cell上有Button时不适用,需要处理hitTest
+//        [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];        
+//        [self addSubview:self.pagingScrollView];
         [self resetPagingScrollViewContentSize:2];
     }
 }
@@ -93,6 +89,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (self.pagingScrollView &&
         scrollView == self.pagingScrollView) {
+        NSLog(@"%f", self.pagingScrollView.contentOffset.x);
         [self resetPagingScrollViewContentSize:self.pagingCount];
         CGFloat hPage = self.pagingSize.width?self.pagingScrollView.contentOffset.x/self.pagingScrollView.frame.size.width:0;
         CGFloat vPage = self.pagingSize.height?self.pagingScrollView.contentOffset.y/self.pagingScrollView.frame.size.height:0;
@@ -103,32 +100,34 @@
 - (void)resetPagingScrollViewContentSize:(NSInteger)pagingCount{
     if (self.pagingSize.width) {
         if (pagingCount != (self.pagingScrollView.contentSize.width/self.pagingSize.width)) {
+            self.pagingScrollView.frame = CGRectMake(0, 0, self.pagingSize.width, self.frame.size.height);
             self.pagingScrollView.contentSize = CGSizeMake(self.pagingSize.width*pagingCount, 0);
         }
     }else{
         if (pagingCount != (self.pagingScrollView.contentSize.width/self.pagingSize.height)) {
+            self.pagingScrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.pagingSize.height);
             self.pagingScrollView.contentSize = CGSizeMake(0, self.pagingSize.height*pagingCount);
         }
     }
 }
 
-- (void)tapPagingScrollView:(UITapGestureRecognizer *)tapGR {
-    CGPoint point = [tapGR locationInView:self];
-    NSIndexPath *indexPath = [self indexPathForItemAtPoint:point];
-    if (indexPath) {
-        if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
-            [self collectionView:self didSelectItemAtIndexPath:indexPath];
-        }
-    }
-}
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
-    if (self.pagingScrollView) {
-        if ([self.layer containsPoint:point]) {
-            return self.pagingScrollView;
-        }
-    }
-    return [super hitTest:point withEvent:event];
-}
+//- (void)tapPagingScrollView:(UITapGestureRecognizer *)tapGR {
+//    CGPoint point = [tapGR locationInView:self];
+//    NSIndexPath *indexPath = [self indexPathForItemAtPoint:point];
+//    if (indexPath) {
+//        if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
+//            [self collectionView:self didSelectItemAtIndexPath:indexPath];
+//        }
+//    }
+//}
+//
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+//    if (self.pagingScrollView) {
+//        if ([self.layer containsPoint:point]) {
+//            return self.pagingScrollView;
+//        }
+//    }
+//    return [super hitTest:point withEvent:event];
+//}
 
 @end
