@@ -28,7 +28,6 @@
     }else{
         self.scrollEnabled = NO;
         [self registPagingScrollView];
-        self.pagingScrollView.frame = CGRectMake(0, 0, pagingSize.width, pagingSize.height);
     }
 }
 
@@ -65,10 +64,9 @@
 }
 
 - (void)removePagingScrollView{
-    if (self.pagingScrollView) {
+    if (self.pagingScrollView.superview) {
         [self removeGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
         [self.pagingScrollView removeFromSuperview];
-        self.pagingScrollView = nil;
     }
 }
 
@@ -78,18 +76,19 @@
         self.pagingScrollView.pagingEnabled = YES;
         self.pagingScrollView.delegate = self;
         self.pagingScrollView.hidden = YES;
-        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
-        // 上句 = 下句+tapPagingScrollView+hitTest, cell上有Button时不适用,需要处理hitTest
-//        [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];        
-//        [self addSubview:self.pagingScrollView];
         [self resetPagingScrollViewContentSize:2];
+    }
+    if (!self.pagingScrollView.superview) {
+        [self addGestureRecognizer:self.pagingScrollView.panGestureRecognizer];
+        // 上句 = 下句+tapPagingScrollView+hitTest
+//        [self.pagingScrollView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPagingScrollView:)]];
+        [self addSubview:self.pagingScrollView];
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (self.pagingScrollView &&
         scrollView == self.pagingScrollView) {
-        NSLog(@"%f", self.pagingScrollView.contentOffset.x);
         [self resetPagingScrollViewContentSize:self.pagingCount];
         CGFloat hPage = self.pagingSize.width?self.pagingScrollView.contentOffset.x/self.pagingScrollView.frame.size.width:0;
         CGFloat vPage = self.pagingSize.height?self.pagingScrollView.contentOffset.y/self.pagingScrollView.frame.size.height:0;
@@ -100,12 +99,12 @@
 - (void)resetPagingScrollViewContentSize:(NSInteger)pagingCount{
     if (self.pagingSize.width) {
         if (pagingCount != (self.pagingScrollView.contentSize.width/self.pagingSize.width)) {
-            self.pagingScrollView.frame = CGRectMake(0, 0, self.pagingSize.width, self.frame.size.height);
+            self.pagingScrollView.frame = CGRectMake(0, 0, self.pagingSize.width, 1);
             self.pagingScrollView.contentSize = CGSizeMake(self.pagingSize.width*pagingCount, 0);
         }
     }else{
         if (pagingCount != (self.pagingScrollView.contentSize.width/self.pagingSize.height)) {
-            self.pagingScrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.pagingSize.height);
+            self.pagingScrollView.frame = CGRectMake(0, 0, 1, self.pagingSize.height);
             self.pagingScrollView.contentSize = CGSizeMake(0, self.pagingSize.height*pagingCount);
         }
     }
