@@ -23,7 +23,6 @@
     NSArray *size = @[@(pagingSize.width),@(pagingSize.height)];
     objc_setAssociatedObject(self, @selector(pagingSize), size, OBJC_ASSOCIATION_RETAIN);
     if (CGSizeEqualToSize(pagingSize, CGSizeZero)) {
-        self.scrollEnabled = YES;
         [self removePagingScrollView];
     }else{
         self.scrollEnabled = NO;
