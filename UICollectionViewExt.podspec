@@ -38,8 +38,8 @@ TODO: Add long description of the pod here.
     ss.source_files = 'UICollectionViewExt/UICollectionViewWaterfallLayout/**/*'
   end
 
-  s.subspec 'PagingEnabled' do |ss|
-    ss.source_files = 'UICollectionViewExt/PagingEnabled/**/*'
+  s.subspec 'UIPagingEnabled' do |ss|
+    ss.source_files = 'UICollectionViewExt/UIPagingEnabled/**/*'
   end
   
   # s.resource_bundles = {
