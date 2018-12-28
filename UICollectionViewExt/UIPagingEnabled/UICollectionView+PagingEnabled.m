@@ -19,7 +19,6 @@
 @implementation UICollectionView (PagingEnabled)
 
 - (void)setPagingSize:(CGSize)pagingSize{
-    //id  不让放struct 类型
     NSArray *size = @[@(pagingSize.width),@(pagingSize.height)];
     objc_setAssociatedObject(self, @selector(pagingSize), size, OBJC_ASSOCIATION_RETAIN);
     if (CGSizeEqualToSize(pagingSize, CGSizeZero)) {
@@ -32,10 +31,7 @@
 
 - (CGSize)pagingSize{
     NSArray *size = objc_getAssociatedObject(self, @selector(pagingSize));
-    if (size.count == 2) {
-        return CGSizeMake([size[0] floatValue], [size[1] floatValue]);
-    }
-    return CGSizeZero;
+    return CGSizeMake([size[0] floatValue], [size[1] floatValue]);
 }
 
 - (void)setPagingCount:(NSInteger)pagingCount{

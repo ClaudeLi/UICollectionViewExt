@@ -11,18 +11,18 @@
 @interface UICollectionView (PagingEnabled)
 
 /**
- 横向滚动一页的宽度 或 纵向滚动一页的高度,
- 注: 横向滚动时height=0, 纵向滚动时width=0
+ The width of a page to scroll horizontally or the height of a page to scroll vertically, eg:CGSizeMake(self.view.width, 0)
+ ps: When using default self.scrollEnabled = NO
  */
-@property (nonatomic, assign) CGSize    pagingSize; // default self.scrollEnabled = NO
+@property (nonatomic, assign) CGSize    pagingSize;
 
 /**
- 分页个数
+ The number of pages
  */
 @property (nonatomic, assign) NSInteger pagingCount;
 
 /**
- 重置paging, CGPointZero
+ Reset the contentOffset, CGPointZero
  */
 - (void)resetPaging;
 
