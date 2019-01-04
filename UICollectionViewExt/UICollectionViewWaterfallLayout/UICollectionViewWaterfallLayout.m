@@ -8,8 +8,8 @@
 #import "UICollectionViewWaterfallLayout.h"
 //#import "tgmath.h"
 
-NSString *const UICollectionElementKindSectionHeader = @"UICollectionElementKindSectionHeader";
-NSString *const UICollectionElementKindSectionFooter = @"UICollectionElementKindSectionFooter";
+//NSString *const UICollectionElementKindSectionHeader = @"UICollectionElementKindSectionHeader";
+//NSString *const UICollectionElementKindSectionFooter = @"UICollectionElementKindSectionFooter";
 
 @interface UICollectionViewWaterfallLayout ()
 /// The delegate will point to collection view's delegate automatically.

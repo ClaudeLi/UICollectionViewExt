@@ -20,10 +20,10 @@ typedef NS_ENUM (NSUInteger, UICollectionViewWaterfallLayoutItemRenderDirection)
  *  Constants that specify the types of supplementary views that can be presented using a waterfall layout.
  */
 
-/// A supplementary view that identifies the header for a given section.
-extern NSString *const UICollectionElementKindSectionHeader;
-/// A supplementary view that identifies the footer for a given section.
-extern NSString *const UICollectionElementKindSectionFooter;
+///// A supplementary view that identifies the header for a given section.
+//extern NSString *const UICollectionElementKindSectionHeader;
+///// A supplementary view that identifies the footer for a given section.
+//extern NSString *const UICollectionElementKindSectionFooter;
 
 #pragma mark - UICollectionViewDelegateWaterfallLayout
 
