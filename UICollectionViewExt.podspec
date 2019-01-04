@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'UICollectionViewExt'
   s.version          = '1.0.6'
-  s.summary          = 'CollectionView 左对齐、瀑布流、分页滚动'
+  s.summary          = 'UICollectionViewLayout for left align、waterfall and UICollectionView category for paging enabled'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
